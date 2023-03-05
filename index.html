@@ -29,25 +29,36 @@
  
 <body>
   <h1 style="color: green;">
-    LEAP2023</h1>
+    The Moon</h1>
  
    
 <p>
-    My first PWA
+    How high is your tide today?
   </p>
  
 <script>
+const dtToday = new Date();
+const dtFullMoon = new Date("2023-01-06");   //wolf moon
+const diffInMs = Math.abs(dtToday - dtFullMoon);
+// Convert milliseconds to days
+const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+const daysToFullMoon = diffInDays%28
+console.log(daysToFullMoon); // Output: 45
+document.write('<b>' + daysToFullMoon + ' days to Full Moon ! </b>');
+
+
+
 	window.addEventListener('load', () => {
 	registerSW();
 	});
 
 	// Register the Service Worker
 	async function registerSW() {
-		if ('serviceWorker' in navigator) {
+		if ('hw' in navigator) {
 			try {
 			await navigator
 					.serviceWorker
-					.register('serviceworker.js');
+					.register('hw.js');
 			}
 			catch (e) {
 			console.log('SW registration failed');
