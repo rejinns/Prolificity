@@ -34,7 +34,9 @@
    
 <p>
     How high is your tide today?
+       
   </p>
+  
  
 <script>
 const dtToday = new Date();
@@ -44,8 +46,22 @@ const diffInMs = Math.abs(dtToday - dtFullMoon);
 const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
 const daysToFullMoon = diffInDays%28
 console.log(daysToFullMoon); // Output: 45
-document.write('<b>' + daysToFullMoon + ' days to Full Moon ! </b>');
 
+//show moon phase icon
+const moonPhases = ['🌕', '🌖', '🌗', '🌘','🌑', '🌒', '🌓', '🌔'];
+if(daysToFullMoon == 0) 		nPhase = 0;
+else if(0 < daysToFullMoon < 5)	nPhase = 1;
+else if(5 < daysToFullMoon < 10)	nPhase = 2;
+else if(10 < daysToFullMoon < 13)	nPhase = 3;
+else if(14 < daysToFullMoon < 16)	nPhase = 4; //new moon
+else if(16 < daysToFullMoon < 20)	nPhase = 5;
+else if(20 < daysToFullMoon < 25)	nPhase = 6;
+else if(25 < daysToFullMoon < 27)	nPhase = 7;
+else if(27 < daysToFullMoon)		nPhase = 1;
+document.write('  ' + moonPhases[nPhase]);
+
+document.write('<b>   ' + daysToFullMoon + ' days to Full Moon ! </b> ');
+// <i>image courtesy: https://commons.wikimedia.org/wiki/File:Lunar_Phases.jpg</i><br>
 
 
 	window.addEventListener('load', () => {
@@ -66,6 +82,7 @@ document.write('<b>' + daysToFullMoon + ' days to Full Moon ! </b>');
 		}
 	}
 </script>
+
 
 </body>
 </html>
